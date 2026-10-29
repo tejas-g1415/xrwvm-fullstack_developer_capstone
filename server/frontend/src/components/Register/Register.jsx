@@ -47,13 +47,14 @@ const Register = () => {
       const json = await res.json();
 
       if (res.ok && json.status) {
-        // Save username in session and return home
         sessionStorage.setItem("username", json.userName);
         window.location.href = window.location.origin;
       } else if (json.error === "Already Registered") {
         setError("This username is already registered.");
       } else {
-        setError(json.error || "Registration failed. Please try again.");
+        setError(
+          json.error || "Registration failed. Please try again."
+        );
       }
     } catch (err) {
       setError("Unable to connect to the server. Please try again.");
@@ -171,7 +172,7 @@ const Register = () => {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="email"
               className="input_field"
               value={email}
               required
@@ -199,7 +200,10 @@ const Register = () => {
         </div>
 
         {error && (
-          <p role="alert" style={{ color: "red", textAlign: "center" }}>
+          <p
+            role="alert"
+            style={{ color: "red", textAlign: "center" }}
+          >
             {error}
           </p>
         )}
